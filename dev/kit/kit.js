@@ -89,7 +89,7 @@ function card(L, kind = 'promo'){
   const title = kind === 'pip' ? 'ON A PIP' : kind === 'demoted' ? 'TOOK THE STAIRS' : LADDER[L].title;
   ptext(g, head, 160, 8, red ? '#ff6b5e' : '#f2c14e', { align: 'center' });
   ptext(g, title, 160, 19, '#f4ead5', { align: 'center', scale: 2, shadow: '#05070f' });
-  const foot1 = kind === 'pip' ? 'HIT THE NEXT FLOOR OR TAKE THE STAIRS' : kind === 'demoted' ? "HE'LL BE BACK UPSTAIRS" : (L === 0 ? 'FLOOR B1' : `FLOOR ${LADDER[L].floor} · UNLOCKED AT ${fmtUsd(LADDER[L].at)}`);
+  const foot1 = kind === 'pip' ? `GET HIM BACK ABOVE ${fmtUsd(LADDER[L].at)}` : kind === 'demoted' ? "HE'LL BE BACK UPSTAIRS" : (L === 0 ? 'FLOOR B1' : `FLOOR ${LADDER[L].floor} · UNLOCKED AT ${fmtUsd(LADDER[L].at)}`);
   const foot2 = kind === 'promo' ? SHORT[L] : 'PROMOTE THE INTERN';
   g.fillStyle = '#070b18'; g.fillRect(0, 153, w, 27); g.fillStyle = '#c9952f'; g.fillRect(0, 153, w, 1);
   ptext(g, foot1, 160, 158, red ? '#ff8a7a' : '#f2c14e', { align: 'center' });
@@ -104,7 +104,7 @@ const KEYS = [
   { t: 0,     cam: 0 }, { t: 3000,  cam: 0 }, { t: 5400,  cam: 3 }, { t: 8400, cam: 3 }, { t: 10000, cam: 5 },
   { t: 12400, cam: 5 }, { t: 14000, cam: 7 }, { t: 16600, cam: 7 }, { t: 17800, cam: 8 }, { t: 19800, cam: 8 }
 ];
-const CAPS = [[300, 2800, 'HE STARTS IN THE MAILROOM.'], [3000, 5400, 'EVERY MILESTONE GETS HIM PROMOTED.'], [8400, 12400, 'AT $100K HE GETS A WALLET.'], [12400, 16600, 'AT $250K HE TRADES.'], [16600, 19800, 'AND THE ROOF?']];
+const CAPS = [[300, 2800, 'HE STARTS IN THE MAILROOM.'], [3000, 5400, 'EVERY MILESTONE GETS HIM PROMOTED.'], [8400, 12400, 'AT $40K HE GETS A WALLET.'], [12400, 16600, 'AT $100K HE TRADES.'], [16600, 19800, 'AND THE ROOF?']];
 const BANNERS = [[5600, 8200, 3], [14200, 16400, 7]];
 const END = 20200, TOTAL = 23400;
 let T = null;

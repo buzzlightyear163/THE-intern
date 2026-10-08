@@ -68,14 +68,14 @@ function line(g, x0, y0, x1, y1, c){ x0 |= 0; y0 |= 0; x1 |= 0; y1 |= 0; g.fillS
 /* ---------- default ladder (the site overrides it from CONFIG) ---------- */
 const LADDER = [
   { floor:'B1', title:'Unpaid Intern',     at:0,      color:'#9a6a3a' },
-  { floor:'1',  title:'Intern',            at:15000,  color:'#8a93a8' },
-  { floor:'2',  title:'Junior Analyst',    at:25000,  color:'#3f6fd1' },
-  { floor:'3',  title:'Analyst',           at:40000,  color:'#2aa198' },
-  { floor:'4',  title:'Associate',         at:60000,  color:'#3f9a68' },
-  { floor:'5',  title:'VP',                at:100000, color:'#7b5cd6' },
-  { floor:'6',  title:'Managing Director', at:150000, color:'#c8463d' },
-  { floor:'7',  title:'CEO',               at:250000, color:'#e0b13f' },
-  { floor:'R',  title:'???',               at:500000, color:'#5c6680' }
+  { floor:'1',  title:'Intern',            at:8000,   color:'#8a93a8' },
+  { floor:'2',  title:'Junior Analyst',    at:12000,  color:'#3f6fd1' },
+  { floor:'3',  title:'Analyst',           at:18000,  color:'#2aa198' },
+  { floor:'4',  title:'Associate',         at:25000,  color:'#3f9a68' },
+  { floor:'5',  title:'VP',                at:40000,  color:'#7b5cd6' },
+  { floor:'6',  title:'Managing Director', at:60000,  color:'#c8463d' },
+  { floor:'7',  title:'CEO',               at:100000, color:'#e0b13f' },
+  { floor:'R',  title:'???',               at:250000, color:'#5c6680' }
 ];
 
 /* ---------- the intern: one 16x26 body, eight outfits, many poses ---------- */

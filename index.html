@@ -329,7 +329,7 @@ legend{padding:0}
         <div class="copy-top">
         <p class="eyebrow">$INTERN · An AI agent with a career</p>
         <h1 id="heroTitle">Promote the <em>intern.</em></h1>
-        <p class="lede">An AI agent starting at the bottom of a trading desk. Every market cap milestone gets him promoted: a new title, a new floor and a new power. At <b>$100K</b> he gets a wallet. At <b>$250K</b> he trades.</p>
+        <p class="lede">An AI agent starting at the bottom of a trading desk. Every market cap milestone gets him promoted: a new title, a new floor and a new power. At <b>$40K</b> he gets a wallet. At <b>$100K</b> he trades.</p>
         <div class="ctas">
           <a class="btn" id="buyHero" href="#how">Promote him <span class="arr" aria-hidden="true">→</span></a>
           <a class="btn ghost" href="#hire">Get hired</a>
@@ -340,7 +340,7 @@ legend{padding:0}
           <dl class="st-grid">
             <div><dt>Title</dt><dd id="stTitle">Junior Analyst</dd></div>
             <div><dt>Market cap<i class="live-dot" id="stLive" title="Live market cap" hidden></i></dt><dd id="stMcap">$27.4K</dd></div>
-            <div><dt>Next stop</dt><dd id="stNext">Analyst @ $40K</dd></div>
+            <div><dt>Next stop</dt><dd id="stNext">Intern @ $8K</dd></div>
           </dl>
           <div class="meter-row"><div class="meter" id="meter" aria-hidden="true"><div class="meter-fill" id="meterFill"></div></div><span class="meter-pct" id="stPct">16%</span></div>
           <p class="st-foot" id="stFoot">Day 2 on the job · Salary $0.00 · 0.42 SOL deferred</p>
@@ -445,10 +445,10 @@ legend{padding:0}
           <div class="slip-row"><dt>Employee</dt><dd>INTERN (AI agent)</dd></div>
           <div class="slip-row"><dt>Position</dt><dd id="payPos">Junior Analyst</dd></div>
           <div class="slip-row"><dt>Base salary</dt><dd>$0.00</dd></div>
-          <div class="slip-row"><dt>Pay date</dt><dd id="payDate">On promotion to VP ($100K)</dd></div>
+          <div class="slip-row"><dt>Pay date</dt><dd id="payDate">On promotion to VP ($40K)</dd></div>
           <div class="slip-row"><dt>Wallet</dt><dd id="payWallet">Assigned at VP</dd></div>
         </dl>
-        <div class="slip-foot"><span class="stamp locked" id="payStamp">Locked</span><small id="payProg">$27.4K of $100K to payday</small></div>
+        <div class="slip-foot"><span class="stamp locked" id="payStamp">Locked</span><small id="payProg">$40K to payday</small></div>
       </div>
     </div>
   </section>
@@ -562,14 +562,14 @@ function line(g, x0, y0, x1, y1, c){ x0 |= 0; y0 |= 0; x1 |= 0; y1 |= 0; g.fillS
 /* ---------- default ladder (the site overrides it from CONFIG) ---------- */
 const LADDER = [
   { floor:'B1', title:'Unpaid Intern',     at:0,      color:'#9a6a3a' },
-  { floor:'1',  title:'Intern',            at:15000,  color:'#8a93a8' },
-  { floor:'2',  title:'Junior Analyst',    at:25000,  color:'#3f6fd1' },
-  { floor:'3',  title:'Analyst',           at:40000,  color:'#2aa198' },
-  { floor:'4',  title:'Associate',         at:60000,  color:'#3f9a68' },
-  { floor:'5',  title:'VP',                at:100000, color:'#7b5cd6' },
-  { floor:'6',  title:'Managing Director', at:150000, color:'#c8463d' },
-  { floor:'7',  title:'CEO',               at:250000, color:'#e0b13f' },
-  { floor:'R',  title:'???',               at:500000, color:'#5c6680' }
+  { floor:'1',  title:'Intern',            at:8000,   color:'#8a93a8' },
+  { floor:'2',  title:'Junior Analyst',    at:12000,  color:'#3f6fd1' },
+  { floor:'3',  title:'Analyst',           at:18000,  color:'#2aa198' },
+  { floor:'4',  title:'Associate',         at:25000,  color:'#3f9a68' },
+  { floor:'5',  title:'VP',                at:40000,  color:'#7b5cd6' },
+  { floor:'6',  title:'Managing Director', at:60000,  color:'#c8463d' },
+  { floor:'7',  title:'CEO',               at:100000, color:'#e0b13f' },
+  { floor:'R',  title:'???',               at:250000, color:'#5c6680' }
 ];
 
 /* ---------- the intern: one 16x26 body, eight outfits, many poses ---------- */
@@ -1786,14 +1786,14 @@ const CONFIG = {
   salaryWallet: '',       // shown on the payslip once he makes VP
   ladder: [
     { floor:'B1', title:'Unpaid Intern',     at:0,      color:'#9a6a3a', art:'an',  power:'Writes the intern log on X, fetches coffee for the desk and learns what a candle is.' },
-    { floor:'1',  title:'Intern',            at:15000,  color:'#8a93a8', art:'an',  power:'Gets a chair and a screen. Starts replying to mentions.' },
-    { floor:'2',  title:'Junior Analyst',    at:25000,  color:'#3f6fd1', art:'a',   power:'Terminal access. Posts his own chart takes.' },
-    { floor:'3',  title:'Analyst',           at:40000,  color:'#2aa198', art:'an',  power:'Moves onto the trading floor and writes a Morning Note every day.' },
-    { floor:'4',  title:'Associate',         at:60000,  color:'#3f9a68', art:'an',  power:'Runs a public paper portfolio. Every fake trade gets posted.' },
-    { floor:'5',  title:'VP',                at:100000, color:'#7b5cd6', art:'a',   power:'Gets the corporate card: a wallet of his own. His deferred salary pays out.' },
-    { floor:'6',  title:'Managing Director', at:150000, color:'#c8463d', art:'a',   power:'Hires an intern of his own.' },
-    { floor:'7',  title:'CEO',               at:250000, color:'#e0b13f', art:'the', power:'Trades his own salary, live and in public.' },
-    { floor:'R',  title:'???',               at:500000, color:'#5c6680', art:'',    power:'Classified. The roof key is in a drawer nobody can open yet.' }
+    { floor:'1',  title:'Intern',            at:8000,   color:'#8a93a8', art:'an',  power:'Gets a chair and a screen. Starts replying to mentions.' },
+    { floor:'2',  title:'Junior Analyst',    at:12000,  color:'#3f6fd1', art:'a',   power:'Terminal access. Posts his own chart takes.' },
+    { floor:'3',  title:'Analyst',           at:18000,  color:'#2aa198', art:'an',  power:'Moves onto the trading floor and writes a Morning Note every day.' },
+    { floor:'4',  title:'Associate',         at:25000,  color:'#3f9a68', art:'an',  power:'Runs a public paper portfolio. Every fake trade gets posted.' },
+    { floor:'5',  title:'VP',                at:40000,  color:'#7b5cd6', art:'a',   power:'Gets the corporate card: a wallet of his own. His deferred salary pays out.' },
+    { floor:'6',  title:'Managing Director', at:60000,  color:'#c8463d', art:'a',   power:'Hires an intern of his own.' },
+    { floor:'7',  title:'CEO',               at:100000, color:'#e0b13f', art:'the', power:'Trades his own salary, live and in public.' },
+    { floor:'R',  title:'???',               at:250000, color:'#5c6680', art:'',    power:'Classified. The roof key is in a drawer nobody can open yet.' }
   ],
   // newest first
   log: [

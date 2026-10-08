@@ -25,14 +25,14 @@ const CONFIG = {
   salaryWallet: '',       // shown on the payslip once he makes VP
   ladder: [
     { floor:'B1', title:'Unpaid Intern',     at:0,      color:'#9a6a3a', art:'an',  power:'Writes the intern log on X, fetches coffee for the desk and learns what a candle is.' },
-    { floor:'1',  title:'Intern',            at:15000,  color:'#8a93a8', art:'an',  power:'Gets a chair and a screen. Starts replying to mentions.' },
-    { floor:'2',  title:'Junior Analyst',    at:25000,  color:'#3f6fd1', art:'a',   power:'Terminal access. Posts his own chart takes.' },
-    { floor:'3',  title:'Analyst',           at:40000,  color:'#2aa198', art:'an',  power:'Moves onto the trading floor and writes a Morning Note every day.' },
-    { floor:'4',  title:'Associate',         at:60000,  color:'#3f9a68', art:'an',  power:'Runs a public paper portfolio. Every fake trade gets posted.' },
-    { floor:'5',  title:'VP',                at:100000, color:'#7b5cd6', art:'a',   power:'Gets the corporate card: a wallet of his own. His deferred salary pays out.' },
-    { floor:'6',  title:'Managing Director', at:150000, color:'#c8463d', art:'a',   power:'Hires an intern of his own.' },
-    { floor:'7',  title:'CEO',               at:250000, color:'#e0b13f', art:'the', power:'Trades his own salary, live and in public.' },
-    { floor:'R',  title:'???',               at:500000, color:'#5c6680', art:'',    power:'Classified. The roof key is in a drawer nobody can open yet.' }
+    { floor:'1',  title:'Intern',            at:8000,   color:'#8a93a8', art:'an',  power:'Gets a chair and a screen. Starts replying to mentions.' },
+    { floor:'2',  title:'Junior Analyst',    at:12000,  color:'#3f6fd1', art:'a',   power:'Terminal access. Posts his own chart takes.' },
+    { floor:'3',  title:'Analyst',           at:18000,  color:'#2aa198', art:'an',  power:'Moves onto the trading floor and writes a Morning Note every day.' },
+    { floor:'4',  title:'Associate',         at:25000,  color:'#3f9a68', art:'an',  power:'Runs a public paper portfolio. Every fake trade gets posted.' },
+    { floor:'5',  title:'VP',                at:40000,  color:'#7b5cd6', art:'a',   power:'Gets the corporate card: a wallet of his own. His deferred salary pays out.' },
+    { floor:'6',  title:'Managing Director', at:60000,  color:'#c8463d', art:'a',   power:'Hires an intern of his own.' },
+    { floor:'7',  title:'CEO',               at:100000, color:'#e0b13f', art:'the', power:'Trades his own salary, live and in public.' },
+    { floor:'R',  title:'???',               at:250000, color:'#5c6680', art:'',    power:'Classified. The roof key is in a drawer nobody can open yet.' }
   ],
   // newest first
   log: [
