@@ -92,6 +92,8 @@ h2{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,4.6vw,60px)
 .chip.close,.chip.review{background:var(--brass)}
 .chip.pip{background:var(--alarm);color:#fff;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:.45}}
+.live-dot{display:inline-block;width:6px;height:6px;margin:0 0 1px 8px;vertical-align:middle;background:#4ade80;box-shadow:0 0 0 2px rgba(74,222,128,.22);animation:blink 1.6s steps(1) infinite}
+.live-dot[hidden]{display:none}
 .st-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 0}
 .st-grid div{min-width:0}
 .st-grid dt{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2)}

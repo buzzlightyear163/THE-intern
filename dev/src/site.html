@@ -29,7 +29,7 @@
           <div class="st-head"><span class="st-label">Personnel status</span><span class="chip" id="stChip">On the job</span></div>
           <dl class="st-grid">
             <div><dt>Title</dt><dd id="stTitle">Junior Analyst</dd></div>
-            <div><dt>Market cap</dt><dd id="stMcap">$27.4K</dd></div>
+            <div><dt>Market cap<i class="live-dot" id="stLive" title="Live market cap" hidden></i></dt><dd id="stMcap">$27.4K</dd></div>
             <div><dt>Next stop</dt><dd id="stNext">Analyst @ $40K</dd></div>
           </dl>
           <div class="meter-row"><div class="meter" id="meter" aria-hidden="true"><div class="meter-fill" id="meterFill"></div></div><span class="meter-pct" id="stPct">16%</span></div>
@@ -176,7 +176,7 @@
     <label for="demoTod">Time of day <b id="demoTodVal">Auto</b></label>
     <select id="demoTod"><option value="auto">Auto (visitor's clock)</option><option value="night">Night</option><option value="dawn">Dawn</option><option value="day">Day</option><option value="dusk">Dusk</option></select>
     <div class="demo-btns"><button type="button" id="demoPip" aria-pressed="false">PIP off</button><button type="button" id="demoReplay">Replay intro</button></div>
-    <p>Preview only. Drag to promote or demote him. Set <b>demo: false</b> in CONFIG before launch and this panel disappears.</p>
+    <p>Preview only. Drag to promote or demote him. Paste the <b>ca</b> in CONFIG at launch: this panel disappears and the real market cap takes over.</p>
   </div>
 </aside>
 <p class="visually-hidden" id="live" aria-live="polite"></p>

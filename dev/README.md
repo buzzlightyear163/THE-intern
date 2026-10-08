@@ -2,7 +2,8 @@
 
 Hela sajten är `../index.html`. Kod och pixelgrafik ligger i den filen och den behöver inga andra filer.
 För vardagliga ändringar räcker det att redigera `CONFIG` högst upp i skriptet i `index.html`:
-CA, länkar, `demo: false` före launch, startvärde för mcap, intern-loggen, titlar och trösklar.
+CA (när den är ifylld styr den riktiga market cap sajten), länkar, intern-loggen, titlar och trösklar.
+Hur live-befordringarna fungerar står i `../README.md` under "Live promotions".
 
 Vill du ändra grafiken, rummen eller sidans struktur gör du det här i `dev/`:
 
