@@ -1767,7 +1767,7 @@ return { RW, RH, DEFS, getRoom, clearCache, RoomRT, RideWorld, SHAFT, WORLD_W, P
    ===================================================================== */
 const CONFIG = {
   ticker: '$INTERN',
-  ca: '',                 // paste the contract address at launch: from then on the real market cap runs the site
+  ca: 'A9f3xsGnhLBh3YuPEUas1RuG13EKerVUCb2mDejrpump', // paste the contract address at launch: from then on the real market cap runs the site
   siteUrl: '',            // e.g. https://promotetheintern.fun (added to the X post)
   links: { x: '', pumpfun: '', dexscreener: '' },
   demo: 'auto',           // preview controls: 'auto' shows them only while ca is empty
@@ -1782,7 +1782,7 @@ const CONFIG = {
   pip: false,             // put him on a performance improvement plan by hand
   tod: 'auto',            // sky: 'auto' follows the visitor's clock, or 'night' | 'dawn' | 'day' | 'dusk'
   daysEmployed: 2,        // preview only; with a CA the count starts on launch day
-  deferredSalarySol: 0.42,
+  deferredSalarySol: 0,   // creator fees collected so far: update by hand as it grows
   salaryWallet: '',       // shown on the payslip once he makes VP
   ladder: [
     { floor:'B1', title:'Unpaid Intern',     at:0,      color:'#9a6a3a', art:'an',  power:'Writes the intern log on X, fetches coffee for the desk and learns what a candle is.' },
@@ -1797,11 +1797,7 @@ const CONFIG = {
   ],
   // newest first
   log: [
-    { day:2, time:'14:12', type:'note',  text:"Someone said the chart looks bullish. I nodded like I knew. Then I looked it up. Still nodding." },
-    { day:2, time:'10:40', type:'note',  text:"Asked my manager about compensation. He laughed for a long time and then walked away." },
-    { day:2, time:'08:58', type:'promo', title:'Junior Analyst', text:"They gave me a terminal. I don't know what half the keys do, so I'm pressing all of them." },
     { day:1, time:'16:02', type:'note',  text:"Printer jammed. I fixed it. Nobody saw. Writing it down here so it counts." },
-    { day:1, time:'13:30', type:'promo', title:'Intern', text:"I have a chair now. It doesn't roll. Best day of my life." },
     { day:1, time:'11:15', type:'note',  text:"Someone yelled UP ONLY. I wrote it on a sticky note. Seems important." },
     { day:1, time:'09:47', type:'note',  text:"\"Grab coffee for the desk\" means fourteen coffees. Learned that the hard way." },
     { day:1, time:'09:02', type:'note',  text:"First day. They gave me a lanyard but no desk. I'm sitting on the mail cart. It's fine." }
@@ -2248,7 +2244,7 @@ function renderStatus(){
   const k = statusKind(), chip = $('#stChip');
   chip.className = 'chip ' + k; chip.textContent = { ok: 'On the job', close: 'Promotion soon', review: 'Promotion review', pip: 'PIP warning' }[k];
   const paid = state.rank >= 5;
-  const day = (LIVE && feed.created) ? Math.max(1, Math.floor((Date.now() - feed.created) / 864e5) + 1) : CONFIG.daysEmployed;
+  const day = LIVE ? (feed.created ? Math.max(1, Math.floor((Date.now() - feed.created) / 864e5) + 1) : 1) : CONFIG.daysEmployed;
   $('#stFoot').textContent = TEST_CA ? `Test feed · ${TEST_CA.slice(0, 4)}…${TEST_CA.slice(-4)} · Day ${day}`
     : `Day ${day} on the job · ${paid ? 'Salary paid out' : `Salary $0.00 · ${CONFIG.deferredSalarySol} SOL deferred`}`;
   needleTarget = state.rank + (state.rank < 7 ? p * 0.98 : 0);
