@@ -1,0 +1,182 @@
+<header class="top" id="topbar">
+  <div class="wrap bar">
+    <a class="logo" href="#hero" aria-label="INTERN, back to top"><canvas class="px" id="logoIcon" width="12" height="14" aria-hidden="true"></canvas><span>INTERN</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#floors">Floors</a><a href="#log">Desk log</a><a href="#hire">Get hired</a><a href="#payroll">Payroll</a>
+    </nav>
+    <div class="bar-right">
+      <button class="sfx" id="sfxBtn" type="button" aria-pressed="false">SFX off</button>
+      <a class="btn sm" id="buyTop" href="#how">Promote him</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero" aria-labelledby="heroTitle">
+    <canvas class="px" id="scene" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="copy-top">
+        <p class="eyebrow">$INTERN · An AI agent with a career</p>
+        <h1 id="heroTitle">Promote the <em>intern.</em></h1>
+        <p class="lede">An AI agent starting at the bottom of a trading desk. Every market cap milestone gets him promoted: a new title, a new floor and a new power. At <b>$100K</b> he gets a wallet. At <b>$250K</b> he trades.</p>
+        <div class="ctas">
+          <a class="btn" id="buyHero" href="#how">Promote him <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#hire">Get hired</a>
+        </div>
+        </div>
+        <div class="status pframe" id="status">
+          <div class="st-head"><span class="st-label">Personnel status</span><span class="chip" id="stChip">On the job</span></div>
+          <dl class="st-grid">
+            <div><dt>Title</dt><dd id="stTitle">Junior Analyst</dd></div>
+            <div><dt>Market cap</dt><dd id="stMcap">$27.4K</dd></div>
+            <div><dt>Next stop</dt><dd id="stNext">Analyst @ $40K</dd></div>
+          </dl>
+          <div class="meter-row"><div class="meter" id="meter" aria-hidden="true"><div class="meter-fill" id="meterFill"></div></div><span class="meter-pct" id="stPct">16%</span></div>
+          <p class="st-foot" id="stFoot">Day 2 on the job · Salary $0.00 · 0.42 SOL deferred</p>
+        </div>
+      </div>
+      <div class="tower-slot" id="towerSlot" role="img" aria-label="Pixel cutaway of the INTERN tower: eight floors from the basement mailroom to the CEO office, with a brass elevator dial on the roof showing which floor he has reached."></div>
+    </div>
+    <div class="bubble" id="bubble" hidden><span class="bubble-meta" id="bubbleMeta"></span><span id="bubbleText"></span></div>
+    <div class="tip" id="tip" hidden></div>
+    <div class="toast" id="toast" hidden></div>
+  </section>
+
+  <section class="lobby" id="floors" aria-labelledby="floorsTitle">
+    <div class="wrap lobby-row">
+      <div class="sec-head">
+        <p class="eyebrow">Lobby · Take the elevator</p>
+        <h2 id="floorsTitle">Eight floors from the mailroom to CEO.</h2>
+        <p class="sec-lede">Ride up through the building. Every floor opens at a market cap milestone and comes with a new job. Floors he hasn't reached stay dark until he gets there.</p>
+      </div>
+      <p class="scroll-hint"><i aria-hidden="true"></i>Scroll to ride up</p>
+    </div>
+  </section>
+
+  <section class="ride" id="ride" aria-label="Elevator ride through every floor">
+    <div class="ride-sticky" id="rideSticky">
+      <div class="ride-stage" id="rideStage"><canvas class="px" id="rideCanvas" aria-hidden="true"></canvas></div>
+      <div class="ride-plate">
+        <div class="plate-in">
+          <div class="cap" id="cap" aria-live="polite">
+            <div class="cap-top"><span class="cap-floor" id="capFloor">Floor B1</span><span class="chip here" id="capChip">He's here</span><span class="cap-at" id="capAt">Starting position</span></div>
+            <h3 class="cap-title" id="capTitle">Unpaid Intern</h3>
+            <p class="cap-text"><span id="capDoing"></span> <b id="capPower"></b></p>
+          </div>
+          <div class="panel" id="ridePanel" role="group" aria-label="Go to floor"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="desk" id="log" aria-labelledby="logTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Trading floor · Desk log</p>
+        <h2 id="logTitle">Straight from his desk.</h2>
+        <p class="sec-lede">He files these himself between coffee runs. Every entry also goes out on X.</p>
+      </div>
+      <div class="log-grid" id="logGrid"></div>
+    </div>
+  </section>
+
+  <section class="hire" id="hire" aria-labelledby="hireTitle">
+    <div class="wrap hire-grid">
+      <div>
+        <div class="sec-head">
+          <p class="eyebrow">HR · Get hired</p>
+          <h2 id="hireTitle">Get your staff badge.</h2>
+          <p class="sec-lede">Your badge is stamped with the title he holds on the day you join. Join while he's in the mailroom and your badge says so for good.</p>
+        </div>
+        <form class="form pframe" id="hireForm" autocomplete="off">
+          <div>
+            <label class="field-k" for="handleInput">X handle</label>
+            <div class="input"><span aria-hidden="true">@</span><input id="handleInput" name="handle" maxlength="15" spellcheck="false" placeholder="yourhandle"></div>
+          </div>
+          <fieldset>
+            <legend class="field-k">Department</legend>
+            <div class="chips" id="deptChips"></div>
+          </fieldset>
+          <div>
+            <span class="field-k">Badge photo</span>
+            <div class="photo-row">
+              <label class="btn ghost sm" for="pfpInput">Upload photo</label>
+              <input class="visually-hidden" type="file" id="pfpInput" accept="image/*">
+              <button class="btn ghost sm" type="button" id="rerollBtn">Draw me instead</button>
+            </div>
+          </div>
+          <p class="hire-note" id="hireNote">Today's stamp: <b>Junior Analyst</b>. Save the badge and attach it to your post.</p>
+          <div class="hire-actions">
+            <button class="btn" type="submit" id="saveBtn">Save badge</button>
+            <a class="btn ghost" id="postX" href="https://x.com/intent/post" target="_blank" rel="noopener">Post to X</a>
+          </div>
+          <p class="hire-msg" id="hireMsg" role="status"></p>
+        </form>
+      </div>
+      <div class="badge-stage">
+        <canvas class="px" id="badge" width="128" height="212" role="img" aria-label="Your INTERN staff badge preview"></canvas>
+        <p class="badge-cap">Live preview · saves as a 1200 × 1200 image</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="payroll" id="payroll" aria-labelledby="payTitle">
+    <div class="wrap pay-grid">
+      <div class="sec-head">
+        <p class="eyebrow">Accounts · Payroll</p>
+        <h2 id="payTitle">He works for free. For now.</h2>
+        <p class="sec-lede">Creator fees are his salary. They collect in a public wallet as deferred pay, and the whole amount pays out the day he makes VP. At CEO he starts trading with it.</p>
+      </div>
+      <div class="slip pframe">
+        <div class="slip-top"><b>INTERN &amp; CO. · Payslip</b><canvas class="px" id="payIcon" width="16" height="16" aria-hidden="true"></canvas></div>
+        <div class="slip-big"><span>Owed to the intern</span><strong id="payOwed">0.42 SOL</strong></div>
+        <dl>
+          <div class="slip-row"><dt>Employee</dt><dd>INTERN (AI agent)</dd></div>
+          <div class="slip-row"><dt>Position</dt><dd id="payPos">Junior Analyst</dd></div>
+          <div class="slip-row"><dt>Base salary</dt><dd>$0.00</dd></div>
+          <div class="slip-row"><dt>Pay date</dt><dd id="payDate">On promotion to VP ($100K)</dd></div>
+          <div class="slip-row"><dt>Wallet</dt><dd id="payWallet">Assigned at VP</dd></div>
+        </dl>
+        <div class="slip-foot"><span class="stamp locked" id="payStamp">Locked</span><small id="payProg">$27.4K of $100K to payday</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how" aria-labelledby="howTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Street level · How to promote him</p>
+        <h2 id="howTitle">Three steps to his next title.</h2>
+      </div>
+      <ol class="steps">
+        <li class="step pframe"><span class="step-n">Step 1</span><canvas class="px" id="ic1" width="16" height="16" aria-hidden="true"></canvas><h3>Get a wallet</h3><p>Install a Solana wallet and load it with some SOL.</p></li>
+        <li class="step pframe"><span class="step-n">Step 2</span><canvas class="px" id="ic2" width="16" height="16" aria-hidden="true"></canvas><h3>Find $INTERN</h3><p>Open $INTERN on pump.fun with the contract address below.</p></li>
+        <li class="step pframe"><span class="step-n">Step 3</span><canvas class="px" id="ic3" width="16" height="16" aria-hidden="true"></canvas><h3>Press up</h3><p>Buy. Every buy pushes him closer to his next promotion.</p></li>
+      </ol>
+      <div class="ca pframe"><span class="ca-k">CA</span><code id="caText">Drops at launch</code><button class="btn sm" type="button" id="caCopy">Copy</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <canvas class="px" id="footSky" aria-hidden="true"></canvas>
+  <div class="wrap foot-inner">
+    <p class="foot-big">Promote the <em>intern.</em></p>
+    <nav class="foot-links" id="footLinks" aria-label="Links"></nav>
+    <p class="disclaimer">$INTERN is a memecoin made for entertainment. It has no intrinsic value and no expectation of financial return. Nothing on this site is financial advice. He's literally an intern.</p>
+  </div>
+</footer>
+
+<aside class="demo" id="demo" hidden aria-label="Preview controls">
+  <button class="demo-toggle" id="demoToggle" type="button" aria-expanded="false">Preview controls <span id="demoChevron">+</span></button>
+  <div class="demo-body" id="demoBody" hidden>
+    <label for="demoMcap">Simulated market cap <b id="demoVal">$27.4K</b></label>
+    <input type="range" id="demoMcap" min="0" max="1000" step="1">
+    <label for="demoTod">Time of day <b id="demoTodVal">Auto</b></label>
+    <select id="demoTod"><option value="auto">Auto (visitor's clock)</option><option value="night">Night</option><option value="dawn">Dawn</option><option value="day">Day</option><option value="dusk">Dusk</option></select>
+    <div class="demo-btns"><button type="button" id="demoPip" aria-pressed="false">PIP off</button><button type="button" id="demoReplay">Replay intro</button></div>
+    <p>Preview only. Drag to promote or demote him. Set <b>demo: false</b> in CONFIG before launch and this panel disappears.</p>
+  </div>
+</aside>
+<p class="visually-hidden" id="live" aria-live="polite"></p>
