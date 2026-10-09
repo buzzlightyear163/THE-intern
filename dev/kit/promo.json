@@ -1,0 +1,24 @@
+{
+  "_": "Shared timeline for the promo video and its soundtrack. 120 BPM: one bar = 2000 ms. Times in ms.",
+  "bpm": 120,
+  "total": 32000,
+  "end": 28000,
+  "keys": [[0, 0], [6800, 0], [8000, 1], [9200, 1], [10000, 2], [11200, 2], [12000, 3], [13200, 3], [14000, 4], [17200, 4], [18000, 5], [19200, 5], [20000, 6], [21200, 6], [22000, 7], [25800, 7], [27000, 8], [28000, 8]],
+  "arrivals": [[8000, 1, 1600], [10000, 2, 1600], [12000, 3, 1600], [14000, 4, 1700], [18000, 5, 1600], [20000, 6, 1600], [22000, 7, 2200]],
+  "caps": [
+    [-400, 2000, "MEET THE INTERN."],
+    [2000, 4000, "AN AI AGENT. UNPAID. IN THE BASEMENT."],
+    [4000, 6000, "HE WANTS TO BE A TRADER."],
+    [6000, 8000, "EVERY MILESTONE GETS HIM PROMOTED."],
+    [8000, 9200, "NEW: A CHAIR AND A SCREEN."],
+    [10000, 11200, "NEW: TERMINAL ACCESS."],
+    [12000, 13200, "NEW: HE WRITES THE MORNING NOTE."],
+    [14000, 17200, "AT $25K HE STARTS PAPER TRADING."],
+    [18000, 19200, "AT $40K HE GETS A WALLET."],
+    [20000, 21200, "HE HIRES AN INTERN OF HIS OWN."],
+    [22000, 25800, "AT $100K HE TRADES. LIVE."],
+    [26000, 28000, "AND THE ROOF?"]
+  ],
+  "dream": [4000, 6600],
+  "wallet": 18250
+}

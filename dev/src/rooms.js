@@ -649,6 +649,7 @@ class RideWorld {
   }
   draw(g, vw, vh, camFloor, t, opts = {}){
     const top = this.camTop(camFloor, vh), x0 = vw >= WORLD_W + 4 ? Math.floor((vw - WORLD_W) / 2) : Math.round(vw / 2 - (SHAFT + RW / 2));
+    this.view = { x: x0 + SHAFT, top };
     const Tt = TOD[this.tod] || TOD.night;
     const skyEnd = clamp(Math.round(-top), 0, vh);
     if (skyEnd > 0) { vgrad(g, 0, 0, vw, skyEnd, Tt.sky.slice(0, 4)); }

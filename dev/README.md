@@ -25,3 +25,7 @@ python dev/kit/export.py images trailer
 ```
 
 Trailern kräver att `ffmpeg` är installerat. Allt hamnar i `x-kit/`.
+
+## Promo-video med ljud
+
+`python dev/kit/promo.py` bygger `promo.mp4` (32 s, 1920×1080, H.264 + AAC, klar för X). Tidslinjen ligger i `dev/kit/promo.json` och styr både bild och musik. Musiken syntas från noll i `promo_audio.py` (kräver `numpy` och `scipy`), så det finns inga samples eller licenser att tänka på.

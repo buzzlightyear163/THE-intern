@@ -174,7 +174,101 @@ function trailerFrame(){
   T.t += DT; T.frame++;
   return out(T.c);
 }
-function fade(g, a){ if (a <= 0) return; const steps = Math.round(clamp(a, 0, 1) * 16); g.fillStyle = '#000'; for (let y = 0; y < TH_; y++) for (let x = 0; x < TW_; x++) if (IE.BAYER[y & 3][x & 3] < steps) g.fillRect(x, y, 1, 1); }
+function fade(g, a, col = '#000'){ if (a <= 0) return; const steps = Math.round(clamp(a, 0, 1) * 16); g.fillStyle = col; for (let y = 0; y < TH_; y++) for (let x = 0; x < TW_; x++) if (IE.BAYER[y & 3][x & 3] < steps) g.fillRect(x, y, 1, 1); }
 
-return { pfp, banner, og, card, trailerStart, trailerFrame };
+/* ---------- promo: the beat-synced 32 s cut for X (timeline in promo.json, shared with the soundtrack) ---------- */
+let P = null;
+function promoStart(cfg){
+  const c = canvas(TW_, TH_), g = ctx(c, true);
+  const world = new ROOMS.RideWorld({ ladder: LADDER, tod: 'night', rank: 0, rng: mulberry(2027), now: FIXED_NOW });
+  const end = canvas(TW_, TH_), ge = ctx(end, true);
+  starfield(ge, TW_, TH_, 77); paintSkyline(ge, 0, TW_, TH_, 78, 'night', null, { heightScale: 0.32 }); ge.fillStyle = '#05070f'; ge.fillRect(0, TH_ - 8, TW_, 8);
+  P = { cfg, c, g, world, t: 0, rank: 0, conf: [], rng: mulberry(11), end, tower: towerCanvas(7), done: {} };
+  return { frames: Math.ceil(cfg.total / DT) };
+}
+function pCam(t){
+  const K = P.cfg.keys;
+  for (let i = 0; i < K.length - 1; i++) { const [ta, a] = K[i], [tb, b] = K[i + 1]; if (t >= ta && t <= tb) return a === b ? a : a + (b - a) * easeInOut((t - ta) / (tb - ta)); }
+  return K[K.length - 1][1];
+}
+function pMcap(cam){ const i = Math.floor(clamp(cam, 0, 7)), f = cam - i; const a = i === 0 ? 4300 : LADDER[i].at, b = LADDER[Math.min(8, i + 1)].at; return a + (b - a) * f; }
+/* "he wants to be a trader": a thought bubble with a green chart over his head */
+function dream(g, te){
+  const it = P.world.intern; if (!it || !P.world.view) return;
+  if (!P.dreamFix) { P.dreamFix = true; it.override('idle', P.cfg.dream[1] - P.cfg.dream[0]); }
+  const hx = P.world.view.x + Math.round(it.x), hy = TH_ / 2 - 54 + Math.round(it.y) - 27;
+  const ink = '#1a1428', paper = '#fbf4e2';
+  const dot = (x, y, r) => { g.fillStyle = ink; g.fillRect(x - r - 1, y - r, 2 * r + 2, 2 * r); g.fillRect(x - r, y - r - 1, 2 * r, 2 * r + 2); g.fillStyle = paper; g.fillRect(x - r, y - r, 2 * r, 2 * r); };
+  if (te > 60) dot(hx + 5, hy - 2, 1);
+  if (te > 160) dot(hx + 9, hy - 7, 2);
+  if (te < 280) return;
+  const bw = 46, bh = 26, bx = clamp(hx + 6, 4, TW_ - bw - 4), by = hy - 12 - bh;
+  g.fillStyle = ink; g.fillRect(bx - 1, by, bw + 2, bh); g.fillRect(bx, by - 1, bw, bh + 2);
+  g.fillStyle = paper; g.fillRect(bx, by, bw, bh);
+  g.fillStyle = '#e6dcc4'; g.fillRect(bx + 2, by + bh - 4, bw - 4, 1);
+  const show = clamp((te - 280) / 900, 0, 1), n = 8, vals = [3, 5, 4, 8, 7, 11, 13, 17];
+  for (let i = 0; i < Math.ceil(n * show); i++) {
+    const x = bx + 5 + i * 5, top = by + bh - 6 - vals[i], h = 4 + (i % 3);
+    g.fillStyle = '#2f7a4a'; g.fillRect(x + 1, top - 2, 1, h + 4);
+    g.fillStyle = '#3fbf6a'; g.fillRect(x, top, 3, h);
+  }
+  if (show >= 1 && (te % 600) < 400) ptext(g, '$', bx + bw - 7, by + 2, '#3fbf6a');
+}
+function hudBox(g, x, w){ g.fillStyle = '#120d1c'; g.fillRect(x, 8, w, 13); g.fillStyle = '#c9952f'; g.fillRect(x, 8, w, 1); g.fillRect(x, 20, w, 1); }
+function promoFrame(){
+  const { g, world, cfg } = P, t = P.t;
+  const cam = pCam(t), reach = Math.floor(cam + 0.02);
+  if (reach > P.rank && reach <= 7) { P.rank = reach; world.setRank(reach); }
+  const atFloor = Math.abs(cam - Math.round(cam)) < 0.001;
+  for (const [s, L] of cfg.arrivals) if (t >= s && !P.done[L]) {
+    P.done[L] = true; P.conf.length = 0;
+    const it = world.intern; if (it) it.override('cheer', 1500);
+    spawnConfetti(P.conf, L === 7 ? 140 : L === 1 ? 110 : 70, TW_, P.rng, -60);
+  }
+  world.update(DT); stepConfetti(P.conf, DT, TH_);
+  let doors = 0;
+  const K = cfg.keys, i = K.findIndex((k, j) => j < K.length - 1 && t >= k[0] && t < K[j + 1][0]);
+  if (atFloor && i >= 0) { const into = t - K[i][0], left = K[i + 1][0] - t; doors = clamp(Math.min(i === 0 ? 1 : into / 260, left / 260), 0, 1); }
+  if (t < cfg.end) {
+    g.fillStyle = '#000'; g.fillRect(0, 0, TW_, TH_);
+    world.draw(g, TW_, TH_, cam, t, { doors, moving: atFloor ? 0 : 1 });
+    if (cfg.dream && t >= cfg.dream[0] && t < cfg.dream[1]) dream(g, t - cfg.dream[0]);
+    drawConfetti(g, P.conf);
+    const fl = LADDER[clamp(Math.round(cam), 0, 8)].floor;
+    hudBox(g, 8, 38); ptext(g, (atFloor ? '' : '▲ ') + (fl === 'R' ? 'ROOF' : fl), 27, 11, '#ff9a3c', { align: 'center' });
+    const mc = cam >= 7.98 ? '???' : fmtUsd(pMcap(cam)), mw = textW('MCAP ' + mc) + 10;
+    hudBox(g, TW_ - 8 - mw, mw); ptext(g, 'MCAP ' + mc, TW_ - 13, 11, '#7fd19b', { align: 'right' });
+    for (const [s, L, dur] of cfg.arrivals) if (t >= s && t < s + dur) {
+      const k = clamp((t - s) / 180, 0, 1), y = Math.round(-30 + 58 * easeInOut(k));
+      const title = LADDER[L].title, bw = Math.max(textW(title, 2), textW('★ PROMOTED ★')) + 22;
+      g.fillStyle = '#1a1428'; g.fillRect(160 - bw / 2 - 1, y - 1, bw + 2, 30); g.fillStyle = '#f2c14e'; g.fillRect(160 - bw / 2, y, bw, 28); g.fillStyle = '#ffe08a'; g.fillRect(160 - bw / 2, y, bw, 1); g.fillStyle = '#a8792a'; g.fillRect(160 - bw / 2, y + 27, bw, 1);
+      ptext(g, '★ PROMOTED ★', 160, y + 4, '#5c3f12', { align: 'center' });
+      ptext(g, title, 160, y + 13, '#1a1428', { align: 'center', scale: 2 });
+    }
+    for (const [s, e, txt] of cfg.caps) if (t >= s && t < e) {
+      const k = clamp((t - s) / 260, 0, 1);
+      g.fillStyle = '#070b18'; g.fillRect(0, TH_ - 22, TW_, 22); g.fillStyle = '#c9952f'; g.fillRect(0, TH_ - 22, TW_, 1);
+      ptext(g, txt.slice(0, Math.ceil(txt.length * Math.min(1, k * 2))), 160, TH_ - 14, '#f4ead5', { align: 'center' });
+    }
+    for (const [s, L] of cfg.arrivals) if (t >= s && t < s + 130) fade(g, (L === 7 || L === 1 ? 0.55 : 0.3) * (1 - (t - s) / 130), '#fff6d8');
+    if (t > cfg.end - 300) fade(g, (t - (cfg.end - 300)) / 300);
+  } else {
+    const te = t - cfg.end;
+    g.drawImage(P.end, 0, 0);
+    g.drawImage(P.tower, 0, 0, IE.TW, 72, 92, 6, IE.TW, 72);
+    drawNeedle(g, 92, 6, clamp(te / 1400, 0, 1) * 7);
+    if (te < 2200) { const k = te / 2200; g.fillStyle = '#ffe08a'; for (let j = 0; j < 14; j++) { const a = j / 14 * Math.PI * 2 + te * 0.0007; const r = 30 + 60 * k; const x = 160 + Math.cos(a) * r, y = 40 + Math.sin(a) * r * 0.5; if (y < 76) g.fillRect(Math.round(x), Math.round(y), 1, 1); } }
+    ptext(g, 'PROMOTE THE', 160, 88, '#f4ead5', { align: 'center', scale: 2, shadow: '#05070f' });
+    ptext(g, 'INTERN.', 160, 106, '#f2c14e', { align: 'center', scale: 3, shadow: '#05070f' });
+    ptext(g, '$INTERN · AN AI AGENT WITH A CAREER', 160, 135, '#aab4d6', { align: 'center', shadow: '#05070f' });
+    const on = te > 900;
+    if (on) { const w = textW('LIVE ON PUMP.FUN') + 22; g.fillStyle = '#0d2a1a'; g.fillRect(160 - w / 2, 147, w, 13); g.fillStyle = '#7fd19b'; g.fillRect(160 - w / 2, 147, w, 1); g.fillRect(160 - w / 2, 159, w, 1); g.fillStyle = (te % 1000) < 600 ? '#4ade80' : '#1d6b3a'; g.fillRect(160 - w / 2 + 6, 151, 4, 4); ptext(g, 'LIVE ON PUMP.FUN', 160 + 4, 150, '#7fd19b', { align: 'center' }); }
+    if (te < 130) fade(g, 0.6 * (1 - te / 130), '#fff6d8');
+    if (t > cfg.total - 500) fade(g, (t - (cfg.total - 500)) / 500);
+  }
+  P.t += DT;
+  return out(P.c);
+}
+
+return { pfp, banner, og, card, trailerStart, trailerFrame, promoStart, promoFrame };
 })();
